@@ -28,7 +28,7 @@ def home():
 
 @app.route("/about", methods=['POST'])
 def about():
-    return render_template('www.intellipaat.com')
+    return render_template('/')
 
 
 @app.route("/addemp", methods=['POST'])
@@ -60,6 +60,8 @@ def AddEmp():
             s3.Bucket(bucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=bucket)
             s3_location = (bucket_location['LocationConstraint'])
+
+            print("bucket_location:", bucket_location)
 
             if s3_location is None:
                 s3_location = ''
